@@ -149,3 +149,6 @@ Acessar os jobs e verificar se houve erros
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem13.png)
 
+Fontes:  
+[Azure Automation - Stop/Start Virtual Machine](https://www.youtube.com/watch?v=NCVeBYMQeLM)
+
