@@ -1,6 +1,6 @@
 # AzureAutomation-StopStart
 
-Scripts em powershell para automatizar as ações de ligar e desligar VMs em horários determinados.
+Scripts em powershell para automatizar as tarefas de ligar e desligar VMs em horários determinados.
 
 ## Overview
 
@@ -36,7 +36,7 @@ Uma VMs criada para testes
 
 Botão mais (+), procurar por automação.
 
-Imagem01
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem01.png)
 
 ##### 2. Verificar conexões da conta de automação.
 
@@ -48,7 +48,7 @@ AzureRunAsConnection
 AzureClassicRunAsConnection
 ```
 
-Imagem02
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem02.png)
 
 ##### 3. Baixar o projeto
 
@@ -73,7 +73,7 @@ Imagem02
 `$StopType` = Conteúdo da tag para a VM ser desligada, ex: AutoT1, existe apenas no script StopT1.ps1 e StopT2.ps1.  
 
 **Considerações:**  
-AutoT1 = Faz referência ao Tempo 1, que pode ser um agendamento de horário especifico, exemplo das 8h as 18h.
+AutoT1 = Faz referência ao Tempo 1, que pode ser um agendamento de horário especifico, exemplo das 8h as 18h.  
 Os scripts `StartT1.ps1` e `StartT2.ps1`, são idênticos, o intuito é alterar apenas a váriavel `$StartType`.    
 Assim o `StartT1.ps1` fica responsavel pelo agendamento 1 e o `StartT2.ps1` responsável pelo agendamento 2.  
 Os scripts `StopT1.ps1` e `StopT2.ps1` seguem exatamente a mesma linha de raciociono mencionada anteriormente.  
@@ -85,32 +85,41 @@ Conta de automação >> Runbooks >> Adicionar um runbook >> Importar um runbook 
 
 Repita o processos para os demais scripts
 
-Imagem03
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem03.png)
 
-Imagem04
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem04.png)
 
 ##### 6. Publica-los
 
 Após o importa-los é necessário publica-los
 Clique em um script >> Editar >> 
 
-Imagem05
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem05.png)
 
-Imagem06
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem06.png)
 
-Imagem07
+Caso precise é possível editar o runbook nessa tela.  
 
-Imagem08
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem07.png)
+
+Runbooks após publicação.  
+
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem08.png)
 
 ##### 7. Configurar o agendamento
 
-Imagem09
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem09.png)
 
-Imagem10
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem10.png)
 
 ##### 8. Adicionar tags nas VMs
 
-Imagem11
+```
+Start : AutoT1
+Stop : AutoT1
+```
+
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem11.png)
 
 Adicionar tags em larga escala
 mostrar comando
@@ -123,9 +132,9 @@ Conta de automação >> Runbooks >> StartT1.ps1 >> Iniciar
 
 Repetir o processo para o script StopT1.ps1
 
-Imagem12
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem12.png)
 
 Acessar os jobs e verificar se houve erros
 
-Imagem13
+![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem13.png)
 
