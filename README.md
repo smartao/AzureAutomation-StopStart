@@ -66,13 +66,13 @@ AzureClassicRunAsConnection
 ################################
 ```
 
-**Onde:**  
+Onde:  
 `$AutomationRG` = Deve receber o grupo de recursos que as VMs pertencem, nesse exemplo é o "POC-Sergei".  
 `$AutomationAcct` = Nome da conta de automação, foi criada no passo 1.  
 `$StartType` = Conteúdo da tag para a VM ser ligada, ex: AutoT1, existe apenas no script StartT1.ps1 e StartT2.ps1.  
 `$StopType` = Conteúdo da tag para a VM ser desligada, ex: AutoT1, existe apenas no script StopT1.ps1 e StopT2.ps1.  
 
-**Considerações:**  
+Considerações:  
 AutoT1 = Faz referência ao Tempo 1, que pode ser um agendamento de horário especifico, exemplo das 8h as 18h.  
 Os scripts `StartT1.ps1` e `StartT2.ps1`, são idênticos, o intuito é alterar apenas a váriavel `$StartType`.    
 Assim o `StartT1.ps1` fica responsavel pelo agendamento 1 e o `StartT2.ps1` responsável pelo agendamento 2.  
@@ -121,9 +121,20 @@ Stop : AutoT1
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem11.png)
 
-Adicionar tags em larga escala
-mostrar comando
+Caso existe muitas VMs criadas existe a possibilidade de adicionar as tags usando o Azure Cli pelo portal
 
+Exemplo:  
+```
+# Substitua POC-Sergei pelo grupo de recursos que estão as VMs para atualizar a Tag
+RG="POC-Sergei" 
+for i in $(az vm list -g $RG --query "[].name" -o tsv)
+do az vm update \
+    --resource-group $RG \
+    --name $i \
+    --set tags.Start=AutoT1 tags.Stop=AutoT1 \
+    --no-wait
+done
+```
 
 ##### 9. Testes pós instalação
 
