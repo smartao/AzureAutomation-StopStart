@@ -1,8 +1,13 @@
 
 Param(
-   $AutomationRG = "My1StRG",
-   $AutomationAcct = "StopStart",
-   $StartType = "Auto"
+################################
+##### Edit these variables #####
+################################
+   $AutomationRG = "POC-Sergei",
+   $AutomationAcct = "automationrunbook",
+   $StopType = "AutoT1"
+################################
+
 )
 
 
@@ -43,7 +48,7 @@ function Get-AzureRmVMStatus {
     [string]
     $Name = '*'
   )
-  Get-AzureRmVM -ResourceGroupName $ResourceGroupName | ? {$_.Tags.Keys -eq "Start" -and $_.Tags.Values -eq "$StartType"} |
+  Get-AzureRmVM -ResourceGroupName $ResourceGroupName | ? {$_.Tags.Keys -eq "Stop" -and $_.Tags.Values -eq "$StopType"} |
     Get-AzureRmVM -Status |
     Select-Object -Property Name, Statuses, ResourceGroupName |
     Where-Object {$_.Name -like $Name} |
@@ -67,19 +72,19 @@ $subs = Get-AzureRmSubscription -WarningAction SilentlyContinue
 $subs | % {Select-AzureRmSubscription -SubscriptionId $_.SubscriptionId
 $VMs = Get-AzureRmResourceGroup | % {Get-AzureRmVMStatus $_.ResourceGroupName}
 
-$ASVMs = $VMs | ? {$_.Status -eq "VM deallocated"}
+$ASVMs = $VMs | ? {$_.Status -ne "VM deallocated"}
 
 Foreach ($ASVM in $ASVMs)
  {
      $params = @{"Name"=$ASVM.name;"ResourceGroupName"=$ASVM.ResourceGroupName}
-     $msg = "Starting VM "
+     $msg = "Stopping VM "
      $msg += $ASVM.name
      $msg += " on resouregroup "
      $msg += $ASVM.ResourceGroupName
      $msg += "......"
-     Write-Output " "
+     Write-Output " " 
      Write-Output $msg
      Write-Output " "
-     Start-AzureRmAutomationRunbook	-AutomationAccountName $AutomationAcct -Name "StartVM" -Parameters $params -ResourceGroupName $AutomationRG 
+     Start-AzureRmAutomationRunbook	-AutomationAccountName $AutomationAcct -Name "StopVM" -Parameters $params -ResourceGroupName $AutomationRG
      }
 }
