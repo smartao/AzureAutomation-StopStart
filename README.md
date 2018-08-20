@@ -32,13 +32,13 @@ Uma VMs criada para testes
 
 ### Instalação
 
-##### 1. Criar conta de automação.
+#### 1. Criar conta de automação.
 
 Botão mais (+), procurar por automação.
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem01.png)
 
-##### 2. Verificar conexões da conta de automação.
+#### 2. Verificar conexões da conta de automação.
 
 Acesse:  
 Conta de automação >> Recursos compartilhados >> Conexões >> Deve existir duas conexões.
@@ -50,11 +50,11 @@ AzureClassicRunAsConnection
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem02.png)
 
-##### 3. Baixar o projeto
+#### 3. Baixar o projeto
 
 `git clone https://github.com/smartao/AzureAutomation-StopStart.git`
 
-##### 4 - Editar os scripts startT1.ps1 e stopT1.ps1 alterando apenas as três linhas.
+#### 4 - Editar os scripts startT1.ps1 e stopT1.ps1 alterando apenas as três linhas.
 
 ```
 ################################
@@ -78,7 +78,7 @@ Os scripts `StartT1.ps1` e `StartT2.ps1`, são idênticos, o intuito é alterar 
 Assim o `StartT1.ps1` fica responsavel pelo agendamento 1 e o `StartT2.ps1` responsável pelo agendamento 2.  
 Os scripts `StopT1.ps1` e `StopT2.ps1` seguem exatamente a mesma linha de raciocínio mencionada anteriormente.  
 Caso precise de mais agendamentos basta duplicar o script renomeando (ex: StartT3.ps1) e alterando a variável `$StartType`.  
-##### 5. Importa-los na conta de automação
+#### 5. Importa-los na conta de automação
 
 Acesse:
 Conta de automação >> Runbooks >> Adicionar um runbook >> Importar um runbook existente
@@ -89,7 +89,7 @@ Repita o processos para os demais scripts
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem04.png)
 
-##### 6. Publicá-los
+#### 6. Publicá-los
 
 Após importá-los é necessário publicá-los
 Clique em um script >> Editar >> 
@@ -106,7 +106,7 @@ Runbooks após publicação.
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem08.png)
 
-##### 7. Configurar o agendamento
+#### 7. Configurar o agendamento
 
 O Agendamento deve ser configurado apenas para os scripts StartTx.ps e StopTx.ps.
 
@@ -114,7 +114,7 @@ O Agendamento deve ser configurado apenas para os scripts StartTx.ps e StopTx.ps
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem10.png)
 
-##### 8. Adicionar tags nas VMs
+#### 8. Adicionar tags nas VMs
 
 ```
 Start : AutoT1
@@ -138,7 +138,11 @@ do az vm update \
 done
 ```
 
-##### 9. Testes pós instalação
+Atenção:  
+O runbook lê tods as VMs da assinatura, mesmo que estejam em grupo de recursos diferentes.  
+Por isso adicione as tags somente nas VMs que precisam de automação.  
+
+#### 9. Testes pós instalação
 
 Executar o script manualmente para validar
 Conta de automação >> Runbooks >> StartT1.ps1 >> Iniciar
