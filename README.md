@@ -5,10 +5,10 @@ Scripts em powershell para automatizar as tarefas de ligar e desligar VMs em hor
 ## Overview
 
 * A conta de automação é responsável pela execução de script no Azure.  
-* Após publicar o script na conta de automação sera colocado no agendamento apenas os scripts StartTX.ps1 e StopTX, onde X é o número referente do agendamento.  
-* o StartX.ps1 sera executado para ligar as VMs conforme o agendamento.  
-* o StopX.ps1 sera executado para desligar as VMs conforme o agendamento.  
-* Conforme o agendamento esses scripts irão ler todas as tags das VMs do grupo de recursos e em seguida chamar os scripts StartVM.ps1 e StopVM.ps1, dessa forma, se existir 100 VMs para ser ligada, sera chamado 100 vezes o script StartVM.ps1  
+* Após publicar o script na conta de automação coloraremos no agendamento apenas os scripts StartTX.ps1 e StopTX, onde X é o número referente do agendamento.  
+* o StartX.ps1 será executado para ligar as VMs conforme o agendamento.  
+* o StopX.ps1 será executado para desligar as VMs conforme o agendamento.  
+* Conforme o agendamento esses scripts irão ler todas as tags das VMs do grupo de recursos e em seguida chamar os scripts StartVM.ps1 e StopVM.ps1, dessa forma, se existir 100 VMs para ser ligada, será chamado 100 vezes o script StartVM.ps1  
 
 ### Resumo
 
@@ -17,7 +17,7 @@ Scripts em powershell para automatizar as tarefas de ligar e desligar VMs em hor
 1. Baixar projeto
 1. Editar scripts
 1. Importa-los na conta de automação
-1. Publica-los
+1. Publicá-los
 1. Configurar o agendamento
 1. Adicionar tags nas VMs
 1. Testes pós instalação
@@ -73,10 +73,10 @@ Onde:
 `$StopType` = Conteúdo da tag para a VM ser desligada, ex: AutoT1, existe apenas no script StopT1.ps1 e StopT2.ps1.  
 
 Considerações:  
-AutoT1 = Faz referência ao Tempo 1, que pode ser um agendamento de horário especifico, exemplo das 8h as 18h.  
-Os scripts `StartT1.ps1` e `StartT2.ps1`, são idênticos, o intuito é alterar apenas a váriavel `$StartType`.    
+AutoT1 = Faz referência ao Tempo 1, que pode ser um agendamento de horário especéfico, exemplo das 8h ás 18h.  
+Os scripts `StartT1.ps1` e `StartT2.ps1`, são idênticos, o intuito é alterar apenas a variável `$StartType`.    
 Assim o `StartT1.ps1` fica responsavel pelo agendamento 1 e o `StartT2.ps1` responsável pelo agendamento 2.  
-Os scripts `StopT1.ps1` e `StopT2.ps1` seguem exatamente a mesma linha de raciociono mencionada anteriormente.  
+Os scripts `StopT1.ps1` e `StopT2.ps1` seguem exatamente a mesma linha de raciocínio mencionada anteriormente.  
 Caso precise de mais agendamentos basta duplicar o script renomeando (ex: StartT3.ps1) e alterando a variável `$StartType`.  
 ##### 5. Importa-los na conta de automação
 
@@ -89,9 +89,9 @@ Repita o processos para os demais scripts
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem04.png)
 
-##### 6. Publica-los
+##### 6. Publicá-los
 
-Após o importa-los é necessário publica-los
+Após importá-los é necessário publicá-los
 Clique em um script >> Editar >> 
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem05.png)
@@ -108,6 +108,8 @@ Runbooks após publicação.
 
 ##### 7. Configurar o agendamento
 
+O Agendamento deve ser configurado apenas para os scripts StartTx.ps e StopTx.ps.
+
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem09.png)
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem10.png)
@@ -121,7 +123,7 @@ Stop : AutoT1
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem11.png)
 
-Caso existe muitas VMs criadas existe a possibilidade de adicionar as tags usando o Azure Cli pelo portal
+Caso exista muitas VMs criadas existe a possibilidade de adicionar as tags usando o Azure Cli pelo portal
 
 Exemplo:  
 ```
