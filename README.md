@@ -91,8 +91,8 @@ Repita o processos para os demais scripts
 
 #### 6. Publicá-los
 
-Após importá-los é necessário publicá-los
-Clique em um script >> Editar >> 
+Após importá-los é necessário publicá-los  
+Clique em um script e depois no botão Editar.  
 
 ![alt-tag](https://github.com/smartao/AzureAutomation-StopStart/blob/master/images/Imagem05.png)
 
